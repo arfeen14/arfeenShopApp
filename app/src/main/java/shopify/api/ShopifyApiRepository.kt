@@ -1,4 +1,10 @@
 package shopify.api
 
 class ShopifyApiRepository {
+    //door gebruik te maken van de shopify api kan je de methodes hier aanroepen.
+
+    private val shopifyApi: ShopifyApiService =
+        ShopifyApi.createApi()
+
+    //hier moet je de methodes die je in de service hebt gemaakt terug roepen
 }
