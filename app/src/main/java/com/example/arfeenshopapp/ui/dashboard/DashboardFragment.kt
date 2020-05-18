@@ -1,35 +1,42 @@
 package com.example.arfeenshopapp.ui.dashboard
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
+
 import com.example.arfeenshopapp.R
-import com.example.arfeenshopapp.adapter.CategoryAdapter
-import kotlinx.android.synthetic.main.categoryrv_item.view.*
-import models.Category
+import com.example.arfeenshopapp.adapter.MainProductAdapter
+import models.Product
+
 
 class DashboardFragment : Fragment() {
-
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private val category = arrayListOf<Category>()
-    private val categoryAdapter = CategoryAdapter(category)
+    lateinit var dashboardViewModel: DashboardViewModel
+    private val popularProducts = arrayListOf<Product.Producten>()
+    private val popularProductsAdapter =
+        MainProductAdapter(popularProducts, onClickListener = this::clickOnPopularProduct)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+
+
+
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
 
         return root
     }
+
+    private fun clickOnPopularProduct(view: View, product: Product.Producten) {
+
+
+    }
+
+
 }

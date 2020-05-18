@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -15,6 +19,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "SHOPIFY_KEY", apikeyProperties['SHOPIFY_KEY'])
+        buildConfigField("String", "SHOPIFY_PWD", apikeyProperties['SHOPIFY_PWD'])
+        buildConfigField("String", "SHOPIFY_SHRDKEY", apikeyProperties['SHOPIFY_SHRDKEY'])
     }
 
     buildTypes {

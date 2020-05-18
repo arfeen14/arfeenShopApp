@@ -1,6 +1,7 @@
 package shopify.api
 
 import com.example.arfeenshopapp.BuildConfig
+import models.Collections
 import models.Product
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,7 +24,7 @@ interface ShopifyApiService {
 
     @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
     @GET("/admin/api/2020-04/custom_collections.json")
-    fun getCollections(): Call<Product>
+    fun getCollections(): Call<Collections>
 
     @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
     @GET("/admin/api/2020-04/collections/#{collection_id}/products.json")
