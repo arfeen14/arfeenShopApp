@@ -12,7 +12,7 @@ class ShopifyApi {
         //base url off the api
 
         private var baseUrl =
-            "https://" + BuildConfig.SHOPIFY_KEY + ":" + BuildConfig.SHOPIFY_PWD + "@arfeensonlineshop.myshopify.com/admin/api/"
+            "https://"+BuildConfig.SHOPIFY_KEY+":"+BuildConfig.SHOPIFY_PWD+"@arfeensonlineshop.myshopify.com/admin/api/"
 
         fun createApi(): ShopifyApiService {
             val okHttpClient = OkHttpClient.Builder()

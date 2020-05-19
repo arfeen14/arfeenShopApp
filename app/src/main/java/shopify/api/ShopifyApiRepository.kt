@@ -8,9 +8,9 @@ class ShopifyApiRepository {
 
     //hier moet je de methodes die je in de service hebt gemaakt terug roepen
 
-    fun getProducts() = shopifyApi.getProduct()
+    fun getProducts() = shopifyApi.getProducten()
 
-    fun getProducten(id: Long) = shopifyApi.getProducten(id)
+    fun getProducten(id: Long) = shopifyApi.getProducten()
 
     fun getCollections() = shopifyApi.getCollections()
 

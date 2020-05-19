@@ -14,19 +14,19 @@ interface ShopifyApiService {
      */
 
     //headers bevat informatie van de request. BV: de eindatu van de request zelf.
-    @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
-    @GET("/admin/api/2020-04/products/#{product_id}.json")
-    fun getProduct(): Call<Product>
-
-    @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
+    @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
     @GET("/admin/api/2020-04/products.json")
-    fun getProducten(@Path("product_id") productId: Long): Call<Product>
+    fun getProducten(): Call<Product>
 
-    @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
+    @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
+    @GET("/admin/api/2020-04/products/#{product_id}.json")
+    fun getProduct(@Path("product_id") productId: Long): Call<Product>
+
+    @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
     @GET("/admin/api/2020-04/custom_collections.json")
     fun getCollections(): Call<Collections>
 
-    @Headers("Shopify-Acces-token: " + BuildConfig.SHOPIFY_PWD)
+    @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
     @GET("/admin/api/2020-04/collections/#{collection_id}/products.json")
     fun getProductenFromCollection(@Path("collection_id") collection: Long): Call<Product>
 
