@@ -14,6 +14,7 @@ import retrofit2.Response
 class DashboardViewModel(application: Application) : AndroidViewModel(application) {
     private val shopifyApiRepository = ShopifyApiRepository()
     val product = MutableLiveData<Product>()
+    val category = MutableLiveData<Product>()
     val error = MutableLiveData<String>()
 
     fun getProducts() {
