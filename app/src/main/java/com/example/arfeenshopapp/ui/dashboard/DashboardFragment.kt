@@ -1,19 +1,24 @@
 package com.example.arfeenshopapp.ui.dashboard
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.arfeenshopapp.R
+import com.example.arfeenshopapp.adapter.CategoryAdapter
 import com.example.arfeenshopapp.adapter.MainProductAdapter
+import com.example.arfeenshopapp.ui.home.ProductInfoFragment
+import models.Category
 import models.Collections
 import models.Product
 
@@ -26,8 +31,8 @@ class DashboardFragment : Fragment() {
     private val popularProductsAdapter =
         MainProductAdapter(popularProducts, onClickListener = this::clickOnPopularProduct)
 
-    private val collections = arrayListOf<Collections.Collection>()
-
+    private val category = arrayListOf<Collections.Collection>()
+    private val categoryAdapter = CategoryAdapter(category, onClickListner = this::clickOnCategory)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +57,9 @@ class DashboardFragment : Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
 
 
+        dashboardViewModel.getCategory()
+
+
         loadData()
 
         return root
@@ -61,8 +69,9 @@ class DashboardFragment : Fragment() {
 
         dashboardViewModel.getProducts()
 
+
         popularProducts.clear()
-        collections.clear()
+
 
         dashboardViewModel.product.observe(
             viewLifecycleOwner,
@@ -72,20 +81,23 @@ class DashboardFragment : Fragment() {
                 popularProductsAdapter.notifyDataSetChanged()
             })
 
-        //category gedeelte
-        dashboardViewModel.category.observe(
-            viewLifecycleOwner,
-            Observer {
-
-            }
-        )
     }
+
 
     private fun clickOnPopularProduct(view: View, product: Product.Producten) {
 //        laat de product info scherm zien waar je op de add to wish list kan cliken
+
+        val transaction = requireFragmentManager().beginTransaction()
+        val productInfoFragment = ProductInfoFragment()
+
+        productInfoFragment.geselecteerdeProduct = product
+
+        transaction.replace(R.id.nav_host_fragment, productInfoFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
-    private fun clickOnCategory(view: View, product: Product.Producten) {
+    private fun clickOnCategory(view: View, category: Collections.Collection) {
 //        dit stuurt je door naar de category afdeling
     }
 
