@@ -9,7 +9,7 @@ class Collections(
     data class Collection(
         @SerializedName("id") var collectionId: Long,
         @SerializedName("title") var collectionTitle: String,
-        @SerializedName("img") var collectionImage: Image
+        @SerializedName("image") var collectionImage: Image
 
     ) : Serializable {
         data class Image(

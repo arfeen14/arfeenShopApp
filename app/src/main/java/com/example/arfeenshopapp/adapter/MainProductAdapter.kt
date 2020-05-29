@@ -8,10 +8,11 @@ import com.bumptech.glide.Glide
 import com.example.arfeenshopapp.R
 import kotlinx.android.synthetic.main.product_item.view.*
 import models.Product
+import models.Producten
 
 class MainProductAdapter(
-    private val product: List<Product.Producten>,
-    private val onClickListener: (View, Product.Producten) -> Unit
+    private val product: List<Producten>,
+    private val onClickListener: (View, Producten) -> Unit
 ) : RecyclerView.Adapter<MainProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -37,14 +38,14 @@ class MainProductAdapter(
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(product: Product.Producten) {
-            Glide.with(itemView).load(product.imagePath.productImgae).into(itemView.ivProductImage)
+        fun bind(product: Producten) {
+            Glide.with(itemView).load(product.imagePath.productImgPath).into(itemView.ivProductImage)
             itemView.tvProductActivator.text = product.productNaam
 
-            if (product.variants[0].price.isNullOrEmpty()) {
+            if (product.variants[0].productPrice.isNullOrEmpty()) {
                 itemView.tvPrice.visibility = View.GONE
             } else {
-                itemView.tvPrice.text = ("$" + product.variants[0].price)
+                itemView.tvPrice.text = ("$" + product.variants[0].productPrice)
             }
         }
     }

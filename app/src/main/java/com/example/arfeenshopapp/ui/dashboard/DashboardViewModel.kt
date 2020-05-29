@@ -38,7 +38,7 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     //het zelfde voor de collection aka category
     fun getCategory(){
-        shopifyApiRepository.getCollections().enqueue((object : Callback<Collections> {
+        shopifyApiRepository.getCollections().enqueue(object : Callback<Collections> {
             override fun onResponse(call: Call<Collections>, response: Response<Collections>) {
                 if (response.isSuccessful) {
                     category.value = response.body()
@@ -52,7 +52,7 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
             }
 
-        }))
+        })
     }
 
 }

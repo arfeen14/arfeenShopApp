@@ -23,7 +23,7 @@ interface ShopifyApiService {
     fun getProduct(@Path("product_id") productId: Long): Call<Product>
 
     @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
-    @GET("/admin/api/2020-04/custom_collections.json")
+    @GET("/admin/api/2019-10/custom_collections.json")
     fun getCollections(): Call<Collections>
 
     @Headers("X-Shopify-Access-Token: " + BuildConfig.SHOPIFY_PWD)
