@@ -1,9 +1,10 @@
 package converters
 
-import android.app.Activity
+
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import models.Image
 import models.Producten
 import models.Variant
 import java.lang.reflect.Type
@@ -11,25 +12,36 @@ import java.lang.reflect.Type
 class VariantConverter {
 
     @TypeConverter
-    fun skillsFromString(value: String): List<Variant> {
+    fun variantFromString(value: String): List<Variant> {
         val listType: Type = object : TypeToken<ArrayList<Producten>>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun skillsToString(skills: List<Variant>): String {
+    fun variantToString(skills: List<Variant>): String {
         return Gson().toJson(skills)
     }
 
     @TypeConverter
-    fun activitiesFromString(value: String): ArrayList<Activity> {
-        val listType: Type = object : TypeToken<ArrayList<Activity>>() {}.type
+    fun imgFromString(value: String): List<Image> {
+        val listType: Type = object : TypeToken<ArrayList<Producten>>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun activitiesToString(activities: ArrayList<Activity>): String {
-        return Gson().toJson(activities)
+    fun imgToString(skills: List<Image>): String {
+        return Gson().toJson(skills)
+    }
+
+    @TypeConverter
+    fun imgFromString2(value: String): Image {
+        val listType: Type = object : TypeToken<ArrayList<Producten>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun imgToString2(skills: Image): String {
+        return Gson().toJson(skills)
     }
 
 

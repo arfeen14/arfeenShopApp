@@ -2,12 +2,13 @@ package data
 
 import android.content.Context
 import androidx.room.*
+
 import converters.VariantConverter
 import models.Producten
 
 
 @Database(entities = [Producten::class], version = 1, exportSchema = false)
-@TypeConverters(VariantConverter::class)
+@TypeConverters(VariantConverter::class )
 abstract class ProductDatabase : RoomDatabase() {
 
     abstract fun productenDao(): ProductDao
