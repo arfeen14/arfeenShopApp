@@ -11,8 +11,8 @@ import models.Product
 import models.Producten
 
 class WenslijstAdapter(
-    private val product: List<Producten>
-
+//    private val product: List<Producten>
+    private val wishlist: ArrayList<Producten>
 ) : RecyclerView.Adapter<WenslijstAdapter.ViewHolder>() {
 
 
@@ -23,11 +23,11 @@ class WenslijstAdapter(
     }
 
     override fun getItemCount(): Int {
-        return product.size
+        return wishlist.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(product[position])
+        holder.bind(wishlist[position])
     }
 
 

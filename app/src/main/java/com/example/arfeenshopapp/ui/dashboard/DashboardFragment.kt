@@ -20,6 +20,7 @@ import com.example.arfeenshopapp.adapter.CategoryAdapter
 import com.example.arfeenshopapp.adapter.MainProductAdapter
 import com.example.arfeenshopapp.ui.CategoryFragment
 import com.example.arfeenshopapp.ui.home.ProductInfoFragment
+import com.example.arfeenshopapp.ui.notifications.NotificationsViewModel
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.main_category_page.*
 import kotlinx.android.synthetic.main.product_info.*
@@ -32,6 +33,7 @@ private const val MODEL = "model"
 
 class DashboardFragment : Fragment() {
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var notificationsViewModel: NotificationsViewModel
 
     private val popularProducts = arrayListOf<Producten>()
     private val popularProductsAdapter =
@@ -82,28 +84,6 @@ class DashboardFragment : Fragment() {
                 popularProducts.addAll(it.products)
                 popularProductsAdapter.notifyDataSetChanged()
             })
-
-//        dashboardViewModel.getCategory()
-//        category.clear()
-//
-//        dashboardViewModel.category.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                this.category.clear()
-//                category.addAll(it.Collections)
-//                categoryAdapter.notifyDataSetChanged()
-//            }
-//        )
-//
-//        dashboardViewModel.getCategory()
-//        category.clear()
-//        dashboardViewModel.category.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                this.category.clear()
-//                category.addAll(it.Collections)
-//                categoryAdapter.notifyDataSetChanged()
-//            })
     }
 
 
@@ -122,17 +102,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun clickOnCategory(view: View, category: Collections.Collection) {
-//        val transaction = requireFragmentManager().beginTransaction()
-//        val categoryFragment = CategoryFragment()
-//
-//        val bundle = Bundle()
-//        bundle.putLong("Collection_id", category.collectionId)
-//        bundle.putString("Collection_name", category.collectionTitle)
-//        categoryFragment.arguments = bundle
-//
-//        transaction.replace(R.id.nav_host_fragment, categoryFragment)
-//        transaction.addToBackStack(null)
-//        transaction.commit()
+
 
     }
 

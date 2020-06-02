@@ -15,6 +15,8 @@ import com.example.arfeenshopapp.R
 import com.example.arfeenshopapp.adapter.CategoryAdapter
 import com.example.arfeenshopapp.ui.CategoryFragment
 import com.example.arfeenshopapp.ui.notifications.NotificationsFragment
+import com.example.arfeenshopapp.ui.notifications.NotificationsViewModel
+import kotlinx.android.synthetic.main.product_info.*
 import kotlinx.android.synthetic.main.product_info.view.*
 import kotlinx.android.synthetic.main.product_item.view.*
 import kotlinx.android.synthetic.main.wishlist_item.*
@@ -27,7 +29,6 @@ class ProductInfoFragment : Fragment() {
     private lateinit var productInfoViewModel: ProductInfoViewModel
     var geselecteerdeProduct: Producten? = null
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
@@ -39,6 +40,7 @@ class ProductInfoFragment : Fragment() {
     ): View? {
 
         productInfoViewModel = ViewModelProviders.of(this).get(ProductInfoViewModel::class.java)
+
 
         val root = inflater.inflate(R.layout.product_info, container, false)
 
@@ -54,16 +56,15 @@ class ProductInfoFragment : Fragment() {
             .into(root.imgProduct_info)
         root.tvProduct_info_name.text = "€ " + geselecteerdeProduct!!.variants[0].productPrice
 
-        root.btnAddToWishList.setOnClickListener {
-
-
+        root.btnAddToWishList.setOnClickListener() {
+            click()
 
         }
         return root
     }
 
 
-    private fun click(view: View, product: Producten) {
+    private fun click() {
 
     }
 }

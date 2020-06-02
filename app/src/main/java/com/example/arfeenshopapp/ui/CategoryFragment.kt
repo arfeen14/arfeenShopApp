@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.arfeenshopapp.R
-import com.example.arfeenshopapp.adapter.CategoryAdapter
 import com.example.arfeenshopapp.adapter.MainProductAdapter
 import com.example.arfeenshopapp.ui.home.ProductInfoFragment
 import kotlinx.android.synthetic.main.categoryrv_item.view.*
-import models.Product
 import models.Producten
 
 class CategoryFragment : Fragment() {
@@ -40,7 +38,7 @@ class CategoryFragment : Fragment() {
 
         root.tvCategoryText.text = categoryName
 
-        val rvProduct: RecyclerView = root.findViewById(R.id.rvWenslijst)
+        val rvProduct: RecyclerView = root.findViewById(R.id.rvWenslijst1)
         rvProduct.layoutManager =
             GridLayoutManager(this.context, 2, LinearLayoutManager.VERTICAL, false)
         rvProduct.setHasFixedSize(true)
