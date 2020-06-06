@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.arfeenshopapp.R
 import com.example.arfeenshopapp.adapter.WenslijstAdapter
+import data.ProductenRepository
 
 import kotlinx.android.synthetic.main.product_info.view.*
 import kotlinx.android.synthetic.main.wishlist_item.view.*
@@ -22,10 +23,15 @@ class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
     val product = arrayListOf<Producten>()
+
     //    private val popularProductsAdapter =
     //    MainProductAdapter(product, onClickListener = this::clickOnPopularProduct)
     private val wenslijstAdapter =
         WenslijstAdapter(product)
+
+    //database
+    private lateinit var productenRepository: ProductenRepository
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,35 +42,26 @@ class NotificationsFragment : Fragment() {
             ViewModelProviders.of(requireActivity())[NotificationsViewModel::class.java]
 
         val root = inflater.inflate(R.layout.fragment_notifications, container, false)
+
         val rvWenslijst: RecyclerView = root.findViewById(R.id.rvWenslijst1)
-
-
-
 
         rvWenslijst.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         rvWenslijst.adapter = wenslijstAdapter
 
-        loadData()
-
+        productenRepository = ProductenRepository(requireContext())
+        getProductenFromDatabase()
 
         return root
     }
 
-    fun loadData() {
-//        dashboardViewModel.getProducts()
-//        popularProducts.clear()
-//
-//        dashboardViewModel.product.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                this.popularProducts.clear()
-//                popularProducts.addAll(it.products)
-//                popularProductsAdapter.notifyDataSetChanged()
-
-
+    //methode voor database
+    private fun getProductenFromDatabase() {
+        val producten = productenRepository.getAllProducten()
+        this.product.clear()
+        this.product.addAll(producten)
+        wenslijstAdapter.notifyDataSetChanged()
     }
-
 
 }
 

@@ -22,6 +22,7 @@ import com.example.arfeenshopapp.ui.CategoryFragment
 import com.example.arfeenshopapp.ui.home.ProductInfoFragment
 import com.example.arfeenshopapp.ui.notifications.NotificationsViewModel
 import com.google.firebase.database.FirebaseDatabase
+import data.ProductenRepository
 import kotlinx.android.synthetic.main.main_category_page.*
 import kotlinx.android.synthetic.main.product_info.*
 import models.Category
@@ -41,6 +42,9 @@ class DashboardFragment : Fragment() {
 
     private val category = arrayListOf<Collections.Collection>()
     private val categoryAdapter = CategoryAdapter(category, onClickListner = this::clickOnCategory)
+
+    //database
+    private lateinit var productenRepository: ProductenRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +69,8 @@ class DashboardFragment : Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         rvCategory.adapter = categoryAdapter
 
+        productenRepository = ProductenRepository(requireContext())
+        getProductenFromDatabase()
 
         loadData()
 
@@ -73,7 +79,6 @@ class DashboardFragment : Fragment() {
 
 
     fun loadData() {
-
         dashboardViewModel.getProducts()
         popularProducts.clear()
 
@@ -86,10 +91,8 @@ class DashboardFragment : Fragment() {
             })
     }
 
-
     private fun clickOnPopularProduct(view: View, product: Producten) {
-//        laat de product info scherm zien waar je op de add to wish list kan cliken
-
+//      laat de product info scherm zien waar je op de add to wish list kan cliken
         val transaction = requireFragmentManager().beginTransaction()
         val productInfoFragment = ProductInfoFragment()
 
@@ -98,12 +101,18 @@ class DashboardFragment : Fragment() {
         transaction.replace(R.id.nav_host_fragment, productInfoFragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
     }
 
     private fun clickOnCategory(view: View, category: Collections.Collection) {
+    }
 
 
+    //methode voor database
+    private fun getProductenFromDatabase() {
+        val producten = productenRepository.getAllProducten()
+        this.popularProducts.clear()
+        this.popularProducts.addAll(producten)
+        popularProductsAdapter.notifyDataSetChanged()
     }
 
 }

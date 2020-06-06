@@ -17,16 +17,16 @@ public class ProductenRepository(context: Context) {
         return productenDao.getAllProducts()
     }
 
-    fun insertReminder(producten: Producten) {
+    fun insertProducten(producten: Producten) {
         productenDao.insertProduct(producten)
     }
 
-    fun deleteReminder(producten: Producten) {
+    fun deleteProducten(producten: Producten) {
         productenDao.deleteProduct(producten)
     }
 
 
-    fun updateReminder(producten: Producten) {
+    fun updateProducten(producten: Producten) {
         productenDao.updateProduct(producten)
     }
 }

@@ -33,7 +33,7 @@ class WenslijstAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Producten) {
-            Glide.with(itemView).load(product.imagePath).into(itemView.imgWenslijst)
+
             itemView.tvWenslijst.text = product.productNaam
 
 

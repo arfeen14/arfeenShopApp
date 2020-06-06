@@ -35,13 +35,13 @@ class VariantConverter {
 
     @TypeConverter
     fun imgFromString2(value: String): Image {
-        val listType: Type = object : TypeToken<ArrayList<Producten>>() {}.type
+        val listType: Type = object : TypeToken<Image>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
     fun imgToString2(skills: Image): String {
-        return Gson().toJson(skills)
+        return skills.toString()
     }
 
 
