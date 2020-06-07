@@ -39,7 +39,10 @@ class MainProductAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Producten) {
-            Glide.with(itemView).load(product.imagePath.productImgPath).into(itemView.ivProductImage)
+            /**
+             * Comment deze code weg als je het wilt laten werken.
+             */
+//            Glide.with(itemView).load(product.imagePath.productImgPath).into(itemView.ivProductImage)
             itemView.tvProductActivator.text = product.productNaam
 
             if (product.variants[0].productPrice.isNullOrEmpty()) {

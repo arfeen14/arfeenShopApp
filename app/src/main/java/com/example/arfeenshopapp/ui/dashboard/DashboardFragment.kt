@@ -69,8 +69,7 @@ class DashboardFragment : Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         rvCategory.adapter = categoryAdapter
 
-        productenRepository = ProductenRepository(requireContext())
-        getProductenFromDatabase()
+
 
         loadData()
 
@@ -107,12 +106,6 @@ class DashboardFragment : Fragment() {
     }
 
 
-    //methode voor database
-    private fun getProductenFromDatabase() {
-        val producten = productenRepository.getAllProducten()
-        this.popularProducts.clear()
-        this.popularProducts.addAll(producten)
-        popularProductsAdapter.notifyDataSetChanged()
-    }
+
 
 }

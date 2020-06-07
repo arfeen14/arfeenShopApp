@@ -46,7 +46,6 @@ class ProductInfoFragment : Fragment() {
         productInfoViewModel = ViewModelProviders.of(this).get(ProductInfoViewModel::class.java)
 
 
-
         val root = inflater.inflate(R.layout.product_info, container, false)
 
 
@@ -58,19 +57,30 @@ class ProductInfoFragment : Fragment() {
             root.tvProducInfo_info.text = Html.fromHtml(geselecteerdeProduct!!.bodyHtml)
         }
 
-        Glide.with(root.context).load(geselecteerdeProduct!!.imagePath.productImgPath)
-            .into(root.imgProduct_info)
+        /**
+         * Comment deze code weg als je het wilt laten werken.
+         */
+//        Glide.with(root.context).load(geselecteerdeProduct!!.imagePath.productImgPath)
+//            .into(root.imgProduct_info)
+
+
+
         root.tvProduct_info_name.text = "€ " + geselecteerdeProduct!!.variants[0].productPrice
 
         productenRepository = ProductenRepository(requireContext())
 
 
         root.btnAddToWishList.setOnClickListener() {
-        //hier moet ik proberen een product toe te voegen
+            //hier moet ik proberen een product toe te voegen
+            addProduct()
         }
 
 
         return root
+    }
+
+    fun addProduct() {
+        productenRepository.insertProducten(geselecteerdeProduct!!)
     }
 
 
